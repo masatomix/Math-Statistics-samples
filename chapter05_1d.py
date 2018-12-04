@@ -26,7 +26,7 @@ def main(args):
     # print(dict(zip(x_set,prob)))
 
     print(np.all(prob >= 0))  # すべてが正か
-    print("{:.3f}".format(np.sum(prob)))  # 足したら1.0か
+    print(f"{np.sum(prob):.3f}")  # 足したら1.0か
 
     # 期待値の定義
     mean = np.sum([x_k * f(x_k) for x_k in x_set])
@@ -37,19 +37,19 @@ def main(args):
     # 無作為抽出の実施結果
     sample = np.random.choice(x_set, 10000000, p=prob)
 
-    print("期待値の定義　　: {:.3f}".format(mean))
-    print("関数での出力　　: {:.3f}".format(E(X)))
-    print("無作為抽出の平均値: {:.3f}".format(np.mean(sample)))
+    print(f"期待値の定義　　: {mean:.3f}")
+    print(f"関数での出力　　: {E(X):.3f}")
+    print(f"無作為抽出の平均値: {np.mean(sample):.3f}")
 
-    print("分散の定義　: {:.3f}".format(var))
-    print("関数での出力: {:.3f}".format(V(X)))
-    print("無作為抽出の分散値: {:.3f}".format(np.var(sample)))
+    print(f"分散の定義　: {var:.3f}")
+    print(f"関数での出力: {V(X):.3f}")
+    print(f"無作為抽出の分散値: {np.var(sample):.3f}")
 
     def s(x):
         return (x - mean) / np.sqrt(var)
 
-    print("{:.3f}".format(E(X, g=lambda x: s(x))))
-    print("{:.3f}".format(V(X, g=lambda x: s(x))))
+    print(f"{E(X, g=lambda x: s(x)):.3f}")
+    print(f"{V(X, g=lambda x: s(x)):.3f}")
 
     fig = plt.figure()
 
